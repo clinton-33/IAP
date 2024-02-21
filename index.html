@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Tasks</title>
+    </head>
+        <script> 
+        
+const submit = document.querySelector('#submit');
+const newTask = document.querySelector('#newTask');
+
+submit.disabled = true;
+
+newTask.addEventListener('input', () => {
+  submit.disabled = newTask.value.trim() === '';
+});
+
+document.querySelector('form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  const task = newTask.value.trim();
+  const listItem = document.createElement('li');
+  listItem.textContent = task;
+  document.querySelector('ul').appendChild(listItem);
+
+  newTask.value = '';
+
+  // Disable the submit button again
+  submit.disabled = true;
+});
+
+// At the end of the script, add the line return false
+// This prevents the default submission of the form which involves either reloading the current page or redirecting to a new one.
+return false;
+
+        </script>
+    <body>
+        <h1>Tasks</h1>
+        <ul id="Tasks"></ul>
+        <form>
+            <input id="task" placeholder="new task" type="text">
+            <input id="submit" type="submit">
+        </form>
+    </body>    
+
+
+</html>
